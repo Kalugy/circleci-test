@@ -8,19 +8,19 @@ jobs:
       - run: npm install
       - run: npm run test
 
-deploy_qa:
-    docker:
-      - image: circleci/node:10.22.0
-    steps:
-      - checkout
-      - run:
-          name: Install Vercel
-          command: sudo npm i -g vercel
-      - run:
-          name: Deploy App in Vercel
-          command: |
-            URL=$(vercel --public -t $VERCEL_TOKEN --confirm)
-            curl --silent -L $URL
+  deploy_qa:
+      docker:
+        - image: circleci/node:10.22.0
+      steps:
+        - checkout
+        - run:
+            name: Install Vercel
+            command: sudo npm i -g vercel
+        - run:
+            name: Deploy App in Vercel
+            command: |
+              URL=$(vercel --public -t $VERCEL_TOKEN --confirm)
+              curl --silent -L $URL
 
 workflows:
   version: 2
